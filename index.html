@@ -1,11 +1,432 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Resume - IT Professional</title>
+    <!-- Google Fonts: Sarabun & Prompt for formal Thai context -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;    /* Navy Blue */
+            --secondary-color: #0f766e;  /* Dark Teal */
+            --text-main: #1f2937;        /* Dark Charcoal */
+            --text-muted: #4b5563;       /* Muted Gray */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        h1, h2, h3, h4, .font-prompt {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        /* Action Bar (Top Floating) */
+        .action-bar {
+            max-width: 850px;
+            margin: 20px auto 0;
+            padding: 0 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-print {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-print:hover {
+            background-color: #1e40af;
+        }
+
+        /* Resume Container */
+        .cv-container {
+            max-width: 850px;
+            margin: 15px auto 40px;
+            background: var(--bg-card);
+            padding: 40px 45px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .profile-img-container {
+            width: 130px;
+            height: 160px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-content {
+            flex-grow: 1;
+        }
+
+        .header-name {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px 15px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            width: 14px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 22px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title i {
+            font-size: 14px;
+        }
+
+        /* Summary */
+        .summary-text {
+            color: var(--text-main);
+            text-align: justify;
+            font-size: 14.5px;
+        }
+
+        /* Experience & Education Item */
+        .item {
+            margin-bottom: 14px;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .item-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .item-company {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .item-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .item-list {
+            list-style-type: disc;
+            margin-left: 18px;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        .item-list li {
+            margin-bottom: 3px;
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 8px 15px;
+            font-size: 14px;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .skill-details {
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 640px) {
+            .cv-container {
+                padding: 25px 20px;
+                margin: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .profile-img-container {
+                width: 110px;
+                height: 135px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 2px;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Print Optimization (A4 Strict Layout) */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.2cm 1.5cm;
+            }
+
+            body {
+                background-color: #ffffff;
+                font-size: 13.5px;
+            }
+
+            .action-bar {
+                display: none !important;
+            }
+
+            .cv-container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .header {
+                padding-bottom: 18px;
+                margin-bottom: 18px;
+            }
+
+            .profile-img-container {
+                width: 115px;
+                height: 140px;
+            }
+
+            .section {
+                margin-bottom: 16px;
+                page-break-inside: avoid;
+            }
+
+            .item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-</body>
-</html>
+
+    <!-- Top Action Bar -->
+    <div class="action-bar">
+        <button class="btn-print" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> พิมพ์ / บันทึกเป็น PDF
+        </button>
+    </div>
+
+    <!-- Main CV Container -->
+    <div class="cv-container">
+
+        <!-- Header Section with Photo -->
+        <header class="header">
+            <div class="profile-img-container">
+                <!-- รูปถ่ายทางการขนาด 1.5 นิ้ว (อัตราส่วนประมาณ 3:4) -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="รูปถ่ายโปรไฟล์" class="profile-img">
+            </div>
+            <div class="header-content">
+                <h1 class="header-name">สมชาย มั่นคง</h1>
+                <div class="header-title">Senior Software Engineer / DevOps Engineer</div>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>081-234-5678</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>somchai.m@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>กรุงเทพมหานคร, ประเทศไทย</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="#" target="_blank">linkedin.com/in/somchai-m</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-github"></i>
+                        <a href="#" target="_blank">github.com/somchai-dev</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-globe"></i>
+                        <a href="#" target="_blank">somchai-portfolio.com</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="section">
+            <h2 class="section-title">
+                <i class="fa-solid fa-user"></i> ประวัติโดยย่อ (Professional Summary)
+            </h2>
+            <p class="summary-text">
+                วิศวกรซอฟต์แวร์ที่มีประสบการณ์มากกว่า 6 ปี ในการพัฒนาและออกแบบระบบ Enterprise Web Application และการบริหารจัดการโครงสร้างพื้นฐานบน Cloud (AWS) มีความเชี่ยวชาญด้าน Microservices Architecture, CI/CD Pipeline และการปรับปรุงประสิทธิภาพของระบบให้รองรับผู้ใช้งานจำนวนมาก (High Availability) มุ่งมั่นในการนำเทคโนโลยีสมัยใหม่มาประยุกต์ใช้เพื่อแก้ปัญหาทางธุรกิจและเพิ่มประสิทธิภาพการทำงานของทีม
+            </p>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="section">
+            <h2 class="section-title">
+                <i class="fa-solid fa-briefcase"></i> ประวัติการทำงาน (Work Experience)
+            </h2>
+
+            <!-- Job 1 -->
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">Senior Software Engineer <span class="item-company">| บริษัท เทคโนโลยีไทย จำกัด (มหาชน)</span></div>
+                    <div class="item-date">มกราคม 2022 – ปัจจุบัน</div>
+                </div>
+                <ul class="item-list">
+                    <li>ออกแบบและพัฒนาระบบ Payment Gateway แบบ Microservices รองรับการทำรายการมากกว่า 100,000 รายการต่อวัน ด้วย Node.js และ Go</li>
+                    <li>นำ Docker และ Kubernetes เข้ามาใช้ในการจัดเตรียมสภาพแวดล้อมระบบ ทำให้ลดเวลาการ Deploy ลง 40%</li>
+                    <li>วางระบบ CI/CD Pipeline ด้วย GitLab CI และ ArgoCD ช่วยเพิ่มความแม่นยำและลดข้อผิดพลาดจากการ Deploy ระบบ</li>
+                    <li>ให้คำปรึกษาและเป็น Mentor แก่วิศวกรซอฟต์แวร์ระดับ Junior ในทีมจำนวน 5 คน</li>
+                </ul>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">Full Stack Developer <span class="item-company">| บริษัท ดิจิทัลนวัตกรรม จำกัด</span></div>
+                    <div class="item-date">มิถุนายน 2018 – ธันวาคม 2021</div>
+                </div>
+                <ul class="item-list">
+                    <li>พัฒนาและดูแลรักษาเว็บแอปพลิเคชันฝั่งองค์กรโดยใช้ React.js, TypeScript และ Express.js</li>
+                    <li>ออกแบบและปรับแต่ง Database Query บน PostgreSQL และ MongoDB ส่งผลให้ระบบทำงานเร็วขึ้น 30%</li>
+                    <li>พัฒนาร่วมกับทีม Product และ UX/UI Designer เพื่อส่งมอบฟีเจอร์ใหม่ตามกำหนดการในรูปแบบ Agile/Scrum</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">
+                <i class="fa-solid fa-gears"></i> ทักษะความเชี่ยวชาญ (Technical Skills)
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category">Programming:</div>
+                <div class="skill-details">JavaScript (ES6+), TypeScript, Go, Python, HTML5/CSS3</div>
